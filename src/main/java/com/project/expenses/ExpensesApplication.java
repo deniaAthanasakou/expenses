@@ -10,7 +10,6 @@ import org.springframework.context.annotation.Configuration;
 import java.util.logging.Logger;
 
 @Configuration
-@EnableAutoConfiguration(exclude = {DataSourceAutoConfiguration.class, HibernateJpaAutoConfiguration.class})
 @SpringBootApplication
 public class ExpensesApplication {
 
