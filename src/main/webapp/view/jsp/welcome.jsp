@@ -8,12 +8,7 @@
         Spring boot will handle the resource mapping automcatically -->
     <link rel="stylesheet" type="text/css" href="webjars/bootstrap/3.3.7/css/bootstrap.min.css" />
 
-    <!--
-    <spring:url value="/css/main.css" var="springCss" />
-    <link href="${springCss}" rel="stylesheet" />
-     -->
-    <c:url value="/css/welcome.css" var="jstlCss" />
-    <link href="${jstlCss}" rel="stylesheet" />
+    <link href="css/main.css" rel="stylesheet" />
 
 </head>
 <body>

@@ -4,6 +4,7 @@ import com.project.expenses.entities.Category;
 import com.project.expenses.repositories.CategoryReporistory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
@@ -19,9 +20,9 @@ public class CategoryController {
     private CategoryReporistory categoryRepository;
 
     @RequestMapping("/categories")
-    public String viewCategories(Map<String, Object> model) {
+    public String viewCategories(Model model) {
         List<Category> categories = categoryRepository.findAll();
-        model.put("categories", categories);
+        model.addAttribute("categories", categories);
         return "categories";
     }
 
