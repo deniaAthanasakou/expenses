@@ -31,7 +31,7 @@
                 <div class="col-sm-4 center-block">
                     <div class="categoryCircle">
                         ${category.categoryName}
-                            <c:set var="imageUrl" value="/expenses/add/view?categoryName=${category.categoryName}" />
+                            <c:set var="imageUrl" value="/expensesViewForm?categoryName=${category.categoryName}" />
                             <a href="${imageUrl}"><img src="/images/addAmountImg.png"  width="30" height="30"/></a>
                     </div>
                 </div>

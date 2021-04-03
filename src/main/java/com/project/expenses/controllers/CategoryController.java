@@ -23,7 +23,7 @@ public class CategoryController {
     public String viewCategories(Model model) {
         List<Category> categories = categoryRepository.findAll();
         model.addAttribute("categories", categories);
-        return "categories";
+        return "/categories";
     }
 
 }

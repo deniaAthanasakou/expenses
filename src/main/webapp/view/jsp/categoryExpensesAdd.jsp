@@ -20,14 +20,15 @@
 <div class="container">
 
     <h1>Category: ${category}</h1>
-    <form action="/expenses/add">
+    <form action="/expensesAdd" method="post">
         <div class="form-group">
             <label for="amount">Amount</label>
-            <input type="number" class="form-control" min="0" id="amount" placeholder="Enter amount">
+            <input type="number" step="0.01" class="form-control" min="0" id="amount" name="amount" placeholder="Enter amount">
+            <input type="hidden" id="categoryName" name="categoryName" value="${category}" placeholder="Enter amount">
         </div>
         <div class="form-group">
             <label for="description">Description</label>
-            <input type="text" class="form-control" id="description" placeholder="Enter description">
+            <input type="text" class="form-control" id="description" name="description" placeholder="Enter description">
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
