@@ -17,6 +17,19 @@
 </head>
 <body>
 
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="/">Expenses App</a>
+            </div>
+            <ul class="nav navbar-nav">
+                <li><a href="/">Home</a></li>
+                <li class="active"><a href="/categories">Categories</a></li>
+                <li><a href="/expenses">Expenses</a></li>
+            </ul>
+        </div>
+    </nav>
+
     <div class="container">
 
         <h1>Categories are:</h1>
