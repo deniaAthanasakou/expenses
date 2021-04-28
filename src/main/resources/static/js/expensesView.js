@@ -2,7 +2,7 @@ $(document).ready(function(){
     var date_input_from=$('input[name="fromDate"]'); //our date input has the name "fromDate"
     var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
     var options={
-        format: 'dd/mm/yyyy',
+        format: 'yyyy/mm/dd',
         container: container,
         todayHighlight: true,
         autoclose: true,

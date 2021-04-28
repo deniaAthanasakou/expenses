@@ -11,8 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.sql.Timestamp;
-import java.util.Date;
+import java.sql.Date;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -43,8 +42,8 @@ public class CategoryExpensesController {
         else if(categories.size() > 1){
             throw new Exception("There were more than one categories with name: " + categoryName);
         }
-
-        Amount amountEntity = new Amount(categories.get(0).getId(), amount, description, new Timestamp(new Date().getTime()));
+        long millis=System.currentTimeMillis();
+        Amount amountEntity = new Amount(categories.get(0).getId(), amount, description, new Date(millis));
         amountRepository.save(amountEntity);
 
         List<Category> allCategories = categoryRepository.findAll();

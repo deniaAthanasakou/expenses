@@ -2,6 +2,7 @@ package com.project.expenses.entities;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.sql.Date;
 import java.sql.Timestamp;
 
 @Entity
@@ -20,15 +21,17 @@ public class Amount implements Serializable {
     private Float amount;
 
     @Column(name="DATE_ADDED", nullable = false)
-    private Timestamp dateAdded;
+    private Date dateAdded;
 
     @Column(name="DESCRIPTION")
     private String description;
 
+    private String categoryName;
+
     public Amount() {
     }
 
-    public Amount(Integer categoryId, Float amount, String description, Timestamp dateAdded) {
+    public Amount(Integer categoryId, Float amount, String description, Date dateAdded) {
         this.categoryId = categoryId;
         this.amount = amount;
         this.description = description;
@@ -59,11 +62,11 @@ public class Amount implements Serializable {
         this.amount = amount;
     }
 
-    public Timestamp getDateAdded() {
+    public Date getDateAdded() {
         return dateAdded;
     }
 
-    public void setDateAdded(Timestamp dateAdded) {
+    public void setDateAdded(Date dateAdded) {
         this.dateAdded = dateAdded;
     }
 
@@ -73,5 +76,13 @@ public class Amount implements Serializable {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getCategoryName() {
+        return categoryName;
+    }
+
+    public void setCategoryName(String categoryName) {
+        this.categoryName = categoryName;
     }
 }

@@ -48,12 +48,12 @@
     <h2>Select the info you want to view in your expenses report</h2>
     <br>
 
-    <form action="/" method="post">
+    <form action="/viewExpensesTable" method="post">
         <h4><b>Categories:</b></h4>
         <div class="form-group">
             <c:forEach items="${categories}" var="category">
                 <div class="checkbox">
-                    <label><input type="checkbox" value="${category.id}">${category.categoryName}</label>
+                    <label><input type="checkbox" name="${category.categoryName}" value="${category.id}">${category.categoryName}</label>
                 </div>
             </c:forEach>
             <div class="checkbox">
@@ -63,18 +63,47 @@
 
         <div class="form-group"> <!-- From Date input -->
             <label class="control-label" for="fromDate">From:</label>
-            <input class="form-control" id="fromDate" name="fromDate" placeholder="DD/MM/YYYY" type="text"/>
+            <input class="form-control" id="fromDate" name="fromDate" placeholder="YYYY/MM/DD" type="text"/>
         </div>
 
         <div class="form-group"> <!-- To Date input -->
             <label class="control-label" for="toDate">To:</label>
-            <input class="form-control" id="toDate" name="fromDate" placeholder="DD/MM/YYYY" type="text"/>
+            <input class="form-control" id="toDate" name="toDate" placeholder="YYYY/MM/DD" type="text"/>
         </div>
 
         <div class="form-group"> <!-- Submit button -->
             <button class="btn btn-primary " name="submit" type="submit">View my expenses</button>
         </div>
     </form>
+
+    <br>
+
+    <c:choose>
+        <c:when test = "${showTable == true}">
+            <h2>Expenses report:</h2>
+            <br>
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>Category</th>
+                    <th>Amount</th>
+                    <th>Description</th>
+                    <th>Date</th>
+                </tr>
+                </thead>
+                <tbody>
+                <c:forEach items="${amountList}" var="item">
+                    <tr>
+                        <td>${item.categoryName}</td>
+                        <td>${item.amount}</td>
+                        <td>${item.description}</td>
+                        <td>${item.dateAdded}</td>
+                    </tr>
+                </c:forEach>
+                </tbody>
+            </table>
+        </c:when>
+    </c:choose>
 
 
 </div>
