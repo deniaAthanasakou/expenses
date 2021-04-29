@@ -2,6 +2,7 @@ package com.project.expenses.controllers;
 
 import com.project.expenses.entities.Amount;
 import com.project.expenses.entities.Category;
+import com.project.expenses.objects.ExpensesPerCategory;
 import com.project.expenses.repositories.AmountRepository;
 import com.project.expenses.repositories.CategoryReporistory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,7 +46,6 @@ public class ExpensesController {
 
         List<Integer> selectedCategoryIds = new ArrayList<>();
 
-
         List<Category> categories = categoryRepository.findAll();
 
         for (Category category: categories){
@@ -59,14 +59,22 @@ public class ExpensesController {
         Date fromDate = df.parse(formData.get("fromDate"));
         Date toDate = df.parse(formData.get("toDate"));
 
+        //create list for expenses report tab
         List<Amount> amounts = amountRepository.findAmountsByCategoriesAndDates(selectedCategoryIds, fromDate, toDate);
-
         for(Amount amount: amounts){
             Category category = categories.stream().filter(c -> c.getId().equals(amount.getCategoryId())).collect(Collectors.toList()).get(0);
             amount.setCategoryName(category.getCategoryName());
         }
 
+        //create list for category sum tab
+        List<ExpensesPerCategory> summarizedAmountsForCategories = amountRepository.sumAmountForCategories(selectedCategoryIds, fromDate, toDate);
+        for(ExpensesPerCategory item : summarizedAmountsForCategories){
+            Category category = categories.stream().filter(c -> c.getId().equals(item.getCategoryId())).collect(Collectors.toList()).get(0);
+            item.setCategoryName(category.getCategoryName());
+        }
+
         model.addAttribute("amountList", amounts);
+        model.addAttribute("sumList", summarizedAmountsForCategories);
         model.addAttribute("categories", categories);
         model.addAttribute("showTable", true);
         return "/expensesView";

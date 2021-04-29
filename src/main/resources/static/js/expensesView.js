@@ -21,3 +21,25 @@ function toggle(source) {
             checkboxes[i].checked = source.checked;
     }
 }
+
+function createExportButtons() {
+    $('#fullReportTable').DataTable( {
+        dom: 'Bfrtip',
+        buttons: [
+            'copyHtml5',
+            'excelHtml5',
+            'csvHtml5',
+            'pdfHtml5'
+        ]
+    } );
+
+    $('#summarizedReportTable').DataTable( {
+        dom: 'Bfrtip',
+        buttons: [
+            'copyHtml5',
+            'excelHtml5',
+            'csvHtml5',
+            'pdfHtml5'
+        ]
+    } );
+}

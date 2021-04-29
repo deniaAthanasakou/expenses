@@ -32,7 +32,20 @@
 
     <div class="container">
 
-        <h1>Categories are:</h1>
+        <h1>Add a category:</h1>
+        <br>
+
+        <form action="/categoriesAdd" method="post">
+            <div class="form-group">
+                <label for="categoryName">CategoryName</label>
+                <input type="text" class="form-control" id="categoryName" name="categoryName" placeholder="Enter a category name" required maxlength="50">
+            </div>
+            <button type="submit" class="btn btn-primary">Add</button>
+        </form>
+
+        <br>
+        <h1>Your categories are:</h1>
+        <br>
         <div class="container">
             <c:set var="columnCounter" value="0" />
             <c:forEach items="${categories}" var="category">
@@ -51,6 +64,7 @@
                  <c:choose>
                       <c:when test = "${columnCounter % 3 == 2}">
                         </div>
+                          <br>
                       </c:when>
                  </c:choose>
 

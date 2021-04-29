@@ -23,7 +23,7 @@
                 <a class="navbar-brand" href="/">ExpensesApp</a>
             </div>
             <ul class="nav navbar-nav">
-                <li class="active"><a href="#">Home</a></li>
+                <li class="active"><a href="/">Home</a></li>
                 <li><a href="/categories">Categories</a></li>
                 <li><a href="/expenses">Expenses</a></li>
             </ul>
@@ -33,10 +33,11 @@
     <div class="container">
 
         <div class="starter-template">
-            <h1>Spring Boot Web JSP Example</h1>
-            <h2>Message: ${message}</h2>
+            <h1>${message}</h1>
+            <br>
+            <p>This is an app for your expenses report. You can create and view categories, as well as add and view your expenses.</p>
+            <p>Have fun!</p>
         </div>
-
     </div>
 </body>
 

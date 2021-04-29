@@ -21,12 +21,19 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
 
-    <link href="/css/categories.css" rel="stylesheet" />
+    <script data-require="jquery@*" data-semver="3.0.0" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.js"></script>
+    <link data-require="datatables@*" data-semver="1.10.12" rel="stylesheet" href="//cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css" />
+    <link data-require="datatables@*" data-semver="1.10.12" rel="stylesheet" href="https://cdn.datatables.net/buttons/1.2.4/css/buttons.dataTables.min.css" />
+    <script data-require="datatables@*" data-semver="1.10.12" src="//cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.2.4/js/dataTables.buttons.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js"></script>
+    <script src="//cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/pdfmake.min.js"></script>
+    <script src="//cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/vfs_fonts.js"></script>
+    <script src="//cdn.datatables.net/buttons/1.2.4/js/buttons.html5.min.js"></script>
+
     <link href="css/main.css" rel="stylesheet" />
 
     <script type="text/javascript" src="js/expensesView.js"></script>
-
-
 </head>
 <body>
 
@@ -49,7 +56,7 @@
     <br>
 
     <form action="/viewExpensesTable" method="post">
-        <h4><b>Categories:</b></h4>
+        <h5><b>Categories:</b></h5>
         <div class="form-group">
             <c:forEach items="${categories}" var="category">
                 <div class="checkbox">
@@ -61,14 +68,22 @@
             </div>
         </div>
 
-        <div class="form-group"> <!-- From Date input -->
-            <label class="control-label" for="fromDate">From:</label>
-            <input class="form-control" id="fromDate" name="fromDate" placeholder="YYYY/MM/DD" type="text"/>
+        <div class="form-group required"> <!-- From Date input -->
+            <div class="input-group datepick">
+                <input type="text" class="form-control" placeholder="YYYY/MM/DD" name="fromDate" id="fromDate" required readonly>
+                <div class="input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </div>
+            </div>
         </div>
 
-        <div class="form-group"> <!-- To Date input -->
-            <label class="control-label" for="toDate">To:</label>
-            <input class="form-control" id="toDate" name="toDate" placeholder="YYYY/MM/DD" type="text"/>
+        <div class="form-group required"> <!-- From To input -->
+            <div class="input-group datepick">
+                <input type="text" class="form-control" placeholder="YYYY/MM/DD" name="toDate" id="toDate" required readonly>
+                <div class="input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </div>
+            </div>
         </div>
 
         <div class="form-group"> <!-- Submit button -->
@@ -80,28 +95,65 @@
 
     <c:choose>
         <c:when test = "${showTable == true}">
-            <h2>Expenses report:</h2>
-            <br>
-            <table class="table table-striped">
-                <thead>
-                <tr>
-                    <th>Category</th>
-                    <th>Amount</th>
-                    <th>Description</th>
-                    <th>Date</th>
-                </tr>
-                </thead>
-                <tbody>
-                <c:forEach items="${amountList}" var="item">
-                    <tr>
-                        <td>${item.categoryName}</td>
-                        <td>${item.amount}</td>
-                        <td>${item.description}</td>
-                        <td>${item.dateAdded}</td>
-                    </tr>
-                </c:forEach>
-                </tbody>
-            </table>
+
+            <div id="exTab2" class="container">
+                <ul class="nav nav-tabs">
+                    <li class="active">
+                        <a  href="#1" data-toggle="tab">Full Report</a>
+                    </li>
+                    <li>
+                        <a href="#2" data-toggle="tab">Category Sums</a>
+                    </li>
+                </ul>
+
+                <div class="tab-content ">
+                    <div class="tab-pane active" id="1">
+                        <h2>Expenses report:</h2>
+                        <br>
+                        <table class="table table-striped" id="fullReportTable">
+                            <thead>
+                            <tr>
+                                <th>Category</th>
+                                <th>Amount</th>
+                                <th>Description</th>
+                                <th>Date</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <c:forEach items="${amountList}" var="item">
+                                <tr>
+                                    <td>${item.categoryName}</td>
+                                    <td>${item.amount}</td>
+                                    <td>${item.description}</td>
+                                    <td>${item.dateAdded}</td>
+                                </tr>
+                            </c:forEach>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="tab-pane" id="2">
+                        <h2>Summed up report:</h2>
+                        <br>
+                        <table class="table table-striped" id="summarizedReportTable">
+                            <thead>
+                            <tr>
+                                <th>Category</th>
+                                <th>Amount</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <c:forEach items="${sumList}" var="item">
+                                <tr>
+                                    <td>${item.categoryName}</td>
+                                    <td>${item.sum}</td>
+                                </tr>
+                            </c:forEach>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
         </c:when>
     </c:choose>
 
