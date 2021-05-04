@@ -12,6 +12,8 @@ $(document).ready(function(){
 
     var date_input_to=$('input[name="toDate"]'); //our date input has the name "toDate"
     date_input_to.datepicker(options);
+
+    createExportButtons();
 })
 
 function toggle(source) {

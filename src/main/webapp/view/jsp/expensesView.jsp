@@ -21,7 +21,7 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
 
-    <script data-require="jquery@*" data-semver="3.0.0" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.js"></script>
+    <!-- Required for export buttons -->
     <link data-require="datatables@*" data-semver="1.10.12" rel="stylesheet" href="//cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css" />
     <link data-require="datatables@*" data-semver="1.10.12" rel="stylesheet" href="https://cdn.datatables.net/buttons/1.2.4/css/buttons.dataTables.min.css" />
     <script data-require="datatables@*" data-semver="1.10.12" src="//cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
@@ -70,7 +70,8 @@
 
         <div class="form-group required"> <!-- From Date input -->
             <div class="input-group datepick">
-                <input type="text" class="form-control" placeholder="YYYY/MM/DD" name="fromDate" id="fromDate" required readonly>
+                <input type="text" class="form-control" placeholder="YYYY/MM/DD" name="fromDate" id="fromDate"
+                       readonly>
                 <div class="input-group-addon">
                     <span class="glyphicon glyphicon-calendar"></span>
                 </div>
@@ -79,7 +80,7 @@
 
         <div class="form-group required"> <!-- From To input -->
             <div class="input-group datepick">
-                <input type="text" class="form-control" placeholder="YYYY/MM/DD" name="toDate" id="toDate" required readonly>
+                <input type="text" class="form-control" placeholder="YYYY/MM/DD" name="toDate" id="toDate" readonly>
                 <div class="input-group-addon">
                     <span class="glyphicon glyphicon-calendar"></span>
                 </div>

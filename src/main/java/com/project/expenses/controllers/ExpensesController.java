@@ -56,18 +56,37 @@ public class ExpensesController {
 
         DateFormat df = new SimpleDateFormat("yyyy/MM/dd");
 
-        Date fromDate = df.parse(formData.get("fromDate"));
-        Date toDate = df.parse(formData.get("toDate"));
+        Date fromDate = null;
+        Date toDate = new Date();
+        if(formData.get("fromDate") != null && formData.get("fromDate").length() != 0){
+            fromDate = df.parse(formData.get("fromDate"));
+        }
 
-        //create list for expenses report tab
-        List<Amount> amounts = amountRepository.findAmountsByCategoriesAndDates(selectedCategoryIds, fromDate, toDate);
+        if(formData.get("toDate") != null && formData.get("toDate").length() != 0){
+            toDate = df.parse(formData.get("toDate"));
+        }
+
+        List<Amount> amounts = null;
+        List<ExpensesPerCategory> summarizedAmountsForCategories = null;
+
+        if(fromDate != null){
+            //create list for expenses report tab
+            amounts = amountRepository.findAmountsByCategoriesAndDates(selectedCategoryIds, fromDate, toDate);
+            //create list for category sum tab
+            summarizedAmountsForCategories = amountRepository.sumAmountForCategories(selectedCategoryIds, fromDate, toDate);
+        }
+        else{
+            //create list for expenses report tab
+            amounts = amountRepository.findAmountsByCategoriesAndToDate(selectedCategoryIds, toDate);
+            //create list for category sum tab
+            summarizedAmountsForCategories = amountRepository.sumAmountForCategoriesOnlyToDate(selectedCategoryIds, toDate);
+        }
+
         for(Amount amount: amounts){
             Category category = categories.stream().filter(c -> c.getId().equals(amount.getCategoryId())).collect(Collectors.toList()).get(0);
             amount.setCategoryName(category.getCategoryName());
         }
 
-        //create list for category sum tab
-        List<ExpensesPerCategory> summarizedAmountsForCategories = amountRepository.sumAmountForCategories(selectedCategoryIds, fromDate, toDate);
         for(ExpensesPerCategory item : summarizedAmountsForCategories){
             Category category = categories.stream().filter(c -> c.getId().equals(item.getCategoryId())).collect(Collectors.toList()).get(0);
             item.setCategoryName(category.getCategoryName());
