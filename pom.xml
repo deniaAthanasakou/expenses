@@ -81,6 +81,11 @@
 			<artifactId>mysql-connector-java</artifactId>
 			<version>5.1.48</version>
 		</dependency>
+		<!-- The following property is disabled because I want to use jsp instead of thymeleaf -->
+		<!--<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-thymeleaf</artifactId>
+		</dependency>-->
 	</dependencies>
 
 
