@@ -6,33 +6,34 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.Table;
 import java.util.Arrays;
 import java.util.Collection;
 
 @Entity
-@Table(name = "USERS")
 public class User implements UserDetails {
 
+    private static final long serialVersionUID = 1L;
+
     @Id
-    private String userName;
-    private String fullName;
+    private String username;
+    private String fullname;
     private String password;
 
-    public String getUserName() {
-        return userName;
+    @Override
+    public String getUsername() {
+        return username;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
-    public String getFullName() {
-        return fullName;
+    public String getFullname() {
+        return fullname;
     }
 
-    public void setFullName(String fullName) {
-        this.fullName = fullName;
+    public void setFullname(String fullname) {
+        this.fullname = fullname;
     }
 
     public String getPassword() {
@@ -44,7 +45,6 @@ public class User implements UserDetails {
     }
 
     //UserDetails methods
-
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return Arrays.asList(new SimpleGrantedAuthority("REPORTER"));
@@ -70,9 +70,4 @@ public class User implements UserDetails {
         return true;
     }
 
-    //if my variable was username instead of userName, then this method would not be needed
-    @Override
-    public String getUsername() {
-        return userName;
-    }
 }

@@ -4,7 +4,7 @@ import com.project.expenses.entities.Amount;
 import com.project.expenses.entities.Category;
 import com.project.expenses.objects.ExpensesPerCategory;
 import com.project.expenses.repositories.AmountRepository;
-import com.project.expenses.repositories.CategoryReporistory;
+import com.project.expenses.repositories.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
@@ -27,7 +27,7 @@ public class ExpensesController {
     private final static Logger LOGGER = Logger.getLogger(ExpensesController.class.getName());
 
     @Autowired
-    private CategoryReporistory categoryRepository;
+    private CategoryRepository categoryRepository;
 
     @Autowired
     private AmountRepository amountRepository;

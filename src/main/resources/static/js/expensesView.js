@@ -26,6 +26,10 @@ function toggle(source) {
 
 function createExportButtons() {
     $('#fullReportTable').DataTable( {
+        paging:   true,
+        ordering: true,
+        info:     true,
+        searching: true,
         dom: 'Bfrtip',
         buttons: [
             'copyHtml5',
@@ -36,6 +40,10 @@ function createExportButtons() {
     } );
 
     $('#summarizedReportTable').DataTable( {
+        paging:   true,
+        ordering: true,
+        info:     true,
+        searching: true,
         dom: 'Bfrtip',
         buttons: [
             'copyHtml5',

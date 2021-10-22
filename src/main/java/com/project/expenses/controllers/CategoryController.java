@@ -1,7 +1,7 @@
 package com.project.expenses.controllers;
 
 import com.project.expenses.entities.Category;
-import com.project.expenses.repositories.CategoryReporistory;
+import com.project.expenses.repositories.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,7 +18,7 @@ public class CategoryController {
     private final static Logger LOGGER = Logger.getLogger(CategoryController.class.getName());
 
     @Autowired
-    private CategoryReporistory categoryRepository;
+    private CategoryRepository categoryRepository;
 
     @RequestMapping("/categories")
     public String viewCategories(Model model) {
