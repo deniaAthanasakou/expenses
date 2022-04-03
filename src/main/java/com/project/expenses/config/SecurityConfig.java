@@ -34,7 +34,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception{
         ///categories url needs user with role REPORTER to be accessed. Other urls are accessed by everyone
         http.csrf().disable()
-                .authorizeRequests().antMatchers("/categories").access("hasRole('REPORTER')")
+                .authorizeRequests().antMatchers("/").access("hasRole('REPORTER')")
                 .antMatchers("/**").permitAll().and()
                 .formLogin().loginPage("/login").permitAll()
                 .failureUrl("/login?error=true");

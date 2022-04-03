@@ -1,5 +1,6 @@
 package com.project.expenses.controllers;
 
+import com.project.expenses.Utils;
 import com.project.expenses.entities.Amount;
 import com.project.expenses.entities.Category;
 import com.project.expenses.objects.ExpensesPerCategory;
@@ -34,6 +35,7 @@ public class ExpensesController {
 
     @RequestMapping(value="/expenses")
     public String viewExpensesParams(Model model) {
+        model.addAttribute("username", Utils.getUserName());
         List<Category> categories = categoryRepository.findAll();
         model.addAttribute("categories", categories);
         model.addAttribute("showTable", false);

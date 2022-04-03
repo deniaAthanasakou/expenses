@@ -47,6 +47,16 @@
             <li><a href="/categories">Categories</a></li>
             <li class="active"><a href="/expenses">Expenses</a></li>
         </ul>
+        <div class="username">
+            <c:choose>
+                <c:when test="${username != null}">
+                    <c:out value="${username}"/>
+                </c:when>
+                <c:otherwise>
+                    <c:out value="User is not logged in"/>
+                </c:otherwise>
+            </c:choose>
+        </div>
     </div>
 </nav>
 
